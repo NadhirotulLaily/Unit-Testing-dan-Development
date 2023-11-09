@@ -1,0 +1,19 @@
+name: Employment Pipeline
+on: 
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Scripts
+        run:
+          docker build -t app .
+          docker login u nadhirotullaily -p dckr_pat_cH5enKfitiwCIOFpsYtz1hU7aE0
+          docker tag app nadhirotullaily/employment
+          docker push nadhirotullaily/employment
