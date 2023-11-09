@@ -1,9 +1,6 @@
-FROM alpine3.17
-
-WORKDIR /apitodo/src/app
-
-COPY . .
-
-EXPOSE 8090
-
-CMD["node", "app.js"]
+FROM alpine
+RUN apk add --update nodejs npm
+WORKDIR /app
+COPY package.json index.js /app/
+RUN npm i
+CMD["node", "index.js"]
